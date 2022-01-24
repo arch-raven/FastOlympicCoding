@@ -66,7 +66,9 @@ def get_tests_file_path(file):
 
 	if not os.path.exists(dirname):
 		os.makedirs(dirname)
-
-	filename = os.path.basename(file) + get_tests_file_suffix()
+	
+	filename = get_settings().get("tests_file_name", None) or (
+        os.path.basename(file) + get_tests_file_suffix()
+    )
 	
 	return os.path.join(dirname, filename)
